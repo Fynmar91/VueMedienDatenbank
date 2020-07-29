@@ -7,9 +7,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const posts = require("./routes/api/posts");
+const media = require("./routes/api/media");
 
-app.use("/api/posts", posts);
+app.use("/api/media", media);
 
 // Handle production
 console.log(process.env.NODE_ENV);

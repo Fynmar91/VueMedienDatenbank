@@ -3,33 +3,33 @@ const mongodb = require("mongodb");
 
 const router = express.Router();
 
-// Get Posts
+// Get Media
 router.get("/", async (req, res) => {
-  const posts = await loadPostCollection();
-  res.send(await posts.find({}).toArray());
+  const media = await loadMediaCollection();
+  res.send(await media.find({}).toArray());
 });
 
-// Add Post
+// Add Media
 router.post("/", async (req, res) => {
-  const posts = await loadPostCollection();
-  await posts.insertOne({
+  const media = await loadMediaCollection();
+  await media.insertOne({
     text: req.body.text,
     createdAt: new Date(),
   });
   res.status(201).send();
 });
 
-// Delete Post
+// Delete Media
 router.delete("/:id", async (req, res) => {
-  const posts = await loadPostCollection();
-  await posts.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
+  const media = await loadMediaCollection();
+  await media.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
   res.status(200).send();
 });
 
-async function loadPostCollection() {
+async function loadMediaCollection() {
   const client = await mongodb.MongoClient.connect("mongodb+srv://vueApp:Passwort1!@vueexpress.brqj2.mongodb.net", { useNewUrlParser: true, useUnifiedTopology: true });
 
-  return client.db("VueExpress").collection("posts");
+  return client.db("VueExpress").collection("media");
 }
 
 module.exports = router;
