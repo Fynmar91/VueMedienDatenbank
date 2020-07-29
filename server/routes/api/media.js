@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const media = await loadMediaCollection();
   await media.insertOne({
-    text: req.body.text,
+    name: req.body.name,
     createdAt: new Date(),
   });
   res.status(201).send();
