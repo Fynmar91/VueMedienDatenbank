@@ -6,7 +6,9 @@
     <div class="media-container">
       <div class="media" v-for="media in getAllMedia" :key="media._id" @dblclick="deleteMedia(media._id)">
         <p class="text">{{ media.name }}</p>
-        <p class="text">{{ `${media.date.getDate()}/${media.date.getMonth() + 1}/${media.date.getFullYear()}` }}</p>
+        <p class="text">{{ media.author }}</p>
+        <p class="text">{{ media.releaseDate }}</p>
+        <p class="text">{{ `${media.startDate.getDate()}/${media.startDate.getMonth() + 1}/${media.startDate.getFullYear()}` }}</p>
       </div>
     </div>
   </div>
@@ -41,30 +43,6 @@ export default {
     }
   },
 };
-
-// data() {
-//   return {
-//     media: [],
-//     error: "",
-//   };
-// },
-// async created() {
-//   try {
-//     this.media = await MediaService.getMedia();
-//   } catch (err) {
-//     this.error = err.message;
-//   }
-// },
-// methods: {
-// async createMedia() {
-//   await MediaService.insertMedia(this.inputText);
-//   this.media = await MediaService.getMedia();
-//   this.inputText = "";
-// },
-// async deleteMedia(id) {
-//   await MediaService.deleteMedia(id);
-//   this.media = await MediaService.getMedia();
-// },
 </script>
 
 <style scoped>

@@ -2,8 +2,23 @@
   <div>
     <div class="add">
       <form @submit="onSubmit">
-        <p class="desc">Medien hinzufügen:</p>
-        <input type="text" v-model="title" placeholder="Add Media..." />
+        <p class="topic">Medien hinzufügen:</p>
+        <div class="flex">
+          <p class="desc">Name:</p>
+          <p class="desc">Autor:</p>
+          <p class="desc">Erscheinungsjahr:</p>
+          <p class="desc">Angefangen am:</p>
+          <p class="desc">Bewertung:</p>
+          <p class="desc">Ist beendet?</p>
+        </div>
+        <div class="flex">
+          <input type="text" v-model="name" placeholder="Name..." />
+          <input type="text" v-model="author" placeholder="Autor..." />
+          <input type="date" v-model="releaseDate" />
+          <input type="date" v-model="startDate" />
+          <input type="text" v-model="rating" placeholder="Bewertung..." />
+          <input type="text" v-model="finished" placeholder="Beendet..." />
+        </div>
         <input type="submit" value="Sumbit" />
       </form>
     </div>
@@ -16,7 +31,12 @@ export default {
   name: "AddMedia",
   data() {
     return {
-      title: "",
+      name: "",
+      author: "",
+      releaseDate: new Date().toISOString().slice(0, 10),
+      startDate: new Date().toISOString().slice(0, 10),
+      rating: "",
+      finished: "",
     };
   },
   methods: {
@@ -24,11 +44,20 @@ export default {
     onSubmit(e) {
       e.preventDefault();
       const newMedia = {
-        name: this.title,
-        date: new Date(),
+        name: this.name,
+        author: this.author,
+        releaseDate: this.releaseDate,
+        startDate: new Date(),
+        rating: this.rating,
+        finished: this.finished,
       };
       this.addMedia(newMedia);
-      this.title = "";
+      this.name = "";
+      this.author = "";
+      this.releaseDate = new Date();
+      this.startDate = new Date();
+      this.rating = "";
+      this.finished = "";
     },
   },
 };
@@ -36,22 +65,39 @@ export default {
 
 <style scoped>
 form {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-gap: 10px;
   margin-top: 40px;
 }
-.desc {
-  min-width: 160px;
+.flex {
+  display: flex;
+  flex-flow: column;
+  grid-row: 2;
+  justify-content: space-between;
 }
-input[type="text"] {
-  flex: 10;
+.topic {
+  grid-column: 1;
+  grid-row: 1;
+  max-width: 200px;
+}
+.desc {
+  max-width: 200px;
+}
+input[type="text"],
+input[type="date"] {
+  grid-column: 2;
+  grid-row: 2;
   padding: 10px;
-  border: 1px #41b883 solid;
+  border: 1px #e65100 solid;
 }
 input[type="submit"] {
-  flex: 2;
-  background: #41b883;
+  grid-column: 3;
+  grid-row: 2;
+  max-width: 100px;
+  background: #e65100;
   color: #fff;
-  border: 1px #41b883 solid;
+  border: 1px #e65100 solid;
   cursor: pointer;
 }
 </style>

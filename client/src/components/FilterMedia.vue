@@ -33,6 +33,6 @@ select {
   flex: 12;
   max-width: 80px;
   padding: 6px;
-  border: 1px #41b883 solid;
+  border: 1px #e65100 solid;
 }
 </style>

@@ -19,13 +19,13 @@ const getters = {
 const actions = {
   async fetchMedia({ commit }) {
     const response = await axios.get(url);
-    const data = response.data.map((media) => ({ ...media, date: new Date(media.date) }));
+    const data = response.data.map((media) => ({ ...media, startDate: new Date(media.startDate) }));
 
     commit("setMedia", data);
   },
   async addMedia({ commit }, newMedia) {
     const response = await axios.post(url, newMedia);
-    response.data.date = new Date(response.data.date);
+    response.data.startDate = new Date(response.data.startDate);
 
     commit("newMedia", response.data);
   },
@@ -37,7 +37,7 @@ const actions = {
   async filterMedia({ commit }, e) {
     const limit = parseInt(e.target.options[e.target.options.selectedIndex].innerText);
     const response = await axios.get(`${url}limit/${limit}`);
-    const data = response.data.map((media) => ({ ...media, date: new Date(media.date) }));
+    const data = response.data.map((media) => ({ ...media, startDate: new Date(media.startDate) }));
 
     commit("setMedia", data);
   },
