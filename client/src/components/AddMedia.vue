@@ -74,7 +74,7 @@ form {
   grid-template-columns: 1fr 2fr 0.2fr;
   grid-template-rows: auto 1fr 1fr 0.1fr;
   grid-gap: 10px;
-  margin-top: 40px;
+  margin-top: 1rem;
 }
 .flex {
   display: flex;
@@ -89,30 +89,33 @@ form {
 }
 .desc {
   max-width: 200px;
+  padding-bottom: 12px;
 }
 .input {
   grid-column: 2;
   grid-row: 2;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 }
 input[type="text"] {
   padding: 10px;
   width: stretch;
+  background: #212121;
+  color: #e0e0e0;
   border: 1px #e65100 solid;
 }
 input[type="submit"] {
   grid-column: 3;
   grid-row: 2;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
   background: #e65100;
-  color: #fff;
+  color: #e0e0e0;
   border: 1px #e65100 solid;
   cursor: pointer;
 }
 .vdp-datepicker {
   position: relative;
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
   background: #e65100;
 }
 .vdp-datepicker__calendar {

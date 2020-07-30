@@ -30,7 +30,7 @@ body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   line-height: 0;
   background: #212121;
-  color: #eceff1;
+  color: #e0e0e0;
 }
 h1 {
   font-size: 72px;

@@ -32,6 +32,8 @@ export default {
 select {
   max-width: 80px;
   padding: 6px;
+  background: #212121;
+  color: #e0e0e0;
   border: 1px #e65100 solid;
 }
 </style>

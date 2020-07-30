@@ -3,10 +3,10 @@
     <p class="error-p" v-if="getError">{{ getError }}</p>
     <div class="media-container">
       <div class="media" v-for="media in getAllMedia" :key="media._id" @dblclick="deleteMedia(media._id)">
-        <p class="text">{{ media.name }}</p>
-        <p class="text">{{ media.author }}</p>
-        <p class="text">{{ media.releaseDate }}</p>
-        <p class="text">{{ `${media.startDate.getDate()}/${media.startDate.getMonth() + 1}/${media.startDate.getFullYear()}` }}</p>
+        <p class="text prop">{{ media.name }}</p>
+        <p class="text prop">{{ media.author }}</p>
+        <p class="text prop">{{ media.releaseDate }}</p>
+        <p class="text prop">{{ `${media.startDate.getDate()}/${media.startDate.getMonth() + 1}/${media.startDate.getFullYear()}` }}</p>
       </div>
     </div>
   </div>
@@ -35,7 +35,6 @@ export default {
   created() {
     try {
       this.fetchMedia();
-      this.setError("Test Error");
     } catch (err) {
       this.setError(err.message);
     }
@@ -44,6 +43,10 @@ export default {
 </script>
 
 <style scoped>
+.prop {
+  font-size: 24px;
+  color: #e0e0e0;
+}
 .error-p {
   color: #e65100;
   text-align: center;
@@ -52,6 +55,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 1rem;
+  margin-top: 1rem;
 }
 .media {
   /* border: 1px solid #ccc; */
