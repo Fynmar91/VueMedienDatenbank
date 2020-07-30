@@ -72,7 +72,7 @@ form {
   display: grid;
   max-width: 600px;
   grid-template-columns: 1fr 2fr 0.2fr;
-  grid-template-rows: auto 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr 0.1fr;
   grid-gap: 10px;
   margin-top: 40px;
 }
@@ -83,7 +83,7 @@ form {
   justify-content: space-between;
 }
 .topic {
-  grid-column: 1;
+  grid-column: 1 / span 2;
   grid-row: 1;
   max-width: 200px;
 }
@@ -103,6 +103,7 @@ input[type="text"] {
 input[type="submit"] {
   grid-column: 3;
   grid-row: 2;
+  margin-bottom: 10px;
   background: #e65100;
   color: #fff;
   border: 1px #e65100 solid;
