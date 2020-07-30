@@ -1,24 +1,26 @@
 <template>
   <div id="app">
+    <h1>Mediendatenbank</h1>
+    <hr />
     <div class="container">
-      <Media />
       <FilterMedia />
+      <Media />
       <AddMedia />
     </div>
   </div>
 </template>
 
 <script>
-import AddMedia from "./components/AddMedia.vue";
 import FilterMedia from "./components/FilterMedia.vue";
 import Media from "./components/Media.vue";
+import AddMedia from "./components/AddMedia.vue";
 
 export default {
   name: "App",
   components: {
-    AddMedia,
     FilterMedia,
     Media,
+    AddMedia,
   },
 };
 </script>
@@ -29,6 +31,11 @@ body {
   line-height: 0;
   background: #212121;
   color: #eceff1;
+}
+h1 {
+  font-size: 72px;
+  text-align: center;
+  line-height: 0.5;
 }
 .container {
   max-width: 1100px;

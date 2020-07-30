@@ -12,12 +12,12 @@
           <p class="desc">Ist beendet?</p>
         </div>
         <div class="flex">
-          <input type="text" v-model="name" placeholder="Name..." />
-          <input type="text" v-model="author" placeholder="Autor..." />
-          <input type="date" v-model="releaseDate" />
-          <input type="date" v-model="startDate" />
-          <input type="text" v-model="rating" placeholder="Bewertung..." />
-          <input type="text" v-model="finished" placeholder="Beendet..." />
+          <input class="input" type="text" v-model="name" placeholder="Name..." />
+          <input class="input" type="text" v-model="author" placeholder="Autor..." />
+          <datepicker v-model="releaseDate" :minimumView="'year'" :maximumView="'year'" :initialView="'year'" placeholder="Select Date"></datepicker>
+          <datepicker v-model="startDate" :minimumView="'year'" :maximumView="'year'" :initialView="'year'" placeholder="Select Date"></datepicker>
+          <input class="input" type="text" v-model="rating" placeholder="Bewertung..." />
+          <input class="input" type="text" v-model="finished" placeholder="Beendet..." />
         </div>
         <input type="submit" value="Sumbit" />
       </form>
@@ -26,15 +26,21 @@
 </template>
 
 <script>
+import Datepicker from "vuejs-datepicker";
+
 import { mapActions } from "vuex";
+
 export default {
   name: "AddMedia",
+  components: {
+    Datepicker,
+  },
   data() {
     return {
       name: "",
       author: "",
-      releaseDate: new Date().toISOString().slice(0, 10),
-      startDate: new Date().toISOString().slice(0, 10),
+      releaseDate: "",
+      startDate: "",
       rating: "",
       finished: "",
     };
@@ -54,19 +60,19 @@ export default {
       this.addMedia(newMedia);
       this.name = "";
       this.author = "";
-      this.releaseDate = new Date();
-      this.startDate = new Date();
-      this.rating = "";
+      (this.releaseDate = ""), (this.startDate = ""), (this.rating = "");
       this.finished = "";
     },
   },
 };
 </script>
 
-<style scoped>
+<style>
 form {
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
+  max-width: 600px;
+  grid-template-columns: 1fr 2fr 0.2fr;
+  grid-template-rows: auto 1fr 1fr 0.1fr;
   grid-gap: 10px;
   margin-top: 40px;
 }
@@ -77,27 +83,43 @@ form {
   justify-content: space-between;
 }
 .topic {
-  grid-column: 1;
+  grid-column: 1 / span 2;
   grid-row: 1;
   max-width: 200px;
 }
 .desc {
   max-width: 200px;
 }
-input[type="text"],
-input[type="date"] {
+.input {
   grid-column: 2;
   grid-row: 2;
+  margin-bottom: 10px;
+}
+input[type="text"] {
   padding: 10px;
+  width: stretch;
   border: 1px #e65100 solid;
 }
 input[type="submit"] {
   grid-column: 3;
   grid-row: 2;
-  max-width: 100px;
+  margin-bottom: 10px;
   background: #e65100;
   color: #fff;
   border: 1px #e65100 solid;
   cursor: pointer;
+}
+.vdp-datepicker {
+  position: relative;
+  text-align: left;
+  margin-bottom: 10px;
+  background: #e65100;
+}
+.vdp-datepicker__calendar {
+  position: absolute;
+  z-index: 100;
+  background: #212121;
+  width: auto;
+  border: 1px solid #e65100;
 }
 </style>
