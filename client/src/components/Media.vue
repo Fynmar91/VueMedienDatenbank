@@ -89,7 +89,7 @@ i {
   cursor: pointer;
 }
 @media (max-width: 500px) {
-  .todos {
+  .media-container {
     grid-template-columns: 1fr;
   }
 }
