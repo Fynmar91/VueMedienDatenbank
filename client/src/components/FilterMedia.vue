@@ -27,10 +27,9 @@ export default {
   margin-top: 40px;
 }
 .desc {
-  min-width: 160px;
+  margin-right: 20px;
 }
 select {
-  flex: 12;
   max-width: 80px;
   padding: 6px;
   border: 1px #e65100 solid;

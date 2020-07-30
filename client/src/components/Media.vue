@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1>Mediendatenbank</h1>
-    <hr />
     <p class="error-p" v-if="getError">{{ getError }}</p>
     <div class="media-container">
       <div class="media" v-for="media in getAllMedia" :key="media._id" @dblclick="deleteMedia(media._id)">
@@ -52,7 +50,7 @@ export default {
 }
 .media-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 1rem;
 }
 .media {
@@ -66,11 +64,6 @@ export default {
   box-shadow: 2px 2px 0px #0a0a0a, -2px -2px 0px #424242;
 }
 .text {
-  line-height: 0.5;
-}
-h1 {
-  font-size: 72px;
-  text-align: center;
   line-height: 0.5;
 }
 @media (max-width: 500px) {
