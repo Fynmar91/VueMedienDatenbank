@@ -19,12 +19,11 @@ const getters = {
 const actions = {
   async fetchMedia({ commit }) {
     const response = await axios.get(url);
-    const data = response.data.map((media) => ({ ...media, createdAt: new Date(media.createdAt) }));
+    const data = response.data.map((media) => ({ ...media, date: new Date(media.date) }));
     commit("setMedia", data);
   },
-  async addMedia({ commit }, name) {
-    console.log(url, { name });
-    const response = await axios.post(url, { name });
+  async addMedia({ commit }, name, date) {
+    const response = await axios.post(url, { name, date });
 
     commit("newMedia", response.data);
   },

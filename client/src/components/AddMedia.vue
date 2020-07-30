@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3>Add Todo</h3>
+    <h3>Add Media</h3>
     <div class="add">
       <form @submit="onSubmit">
-        <input type="text" v-model="title" placeholder="Add Todo..." />
+        <input type="text" v-model="title" placeholder="Add Media..." />
         <input type="submit" value="Sumbit" />
       </form>
     </div>
@@ -23,7 +23,8 @@ export default {
     ...mapActions(["addMedia"]),
     onSubmit(e) {
       e.preventDefault();
-      this.addMedia(this.title);
+      const date = new Date();
+      this.addMedia(this.title, date);
       this.title = "";
     },
   },

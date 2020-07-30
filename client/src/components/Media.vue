@@ -6,7 +6,7 @@
     <div class="media-container">
       <div class="media" v-for="media in getAllMedia" :key="media._id" @dblclick="deleteMedia(media._id)">
         <p class="text">{{ media.name }}</p>
-        {{ `${media.createdAt.getDate()}/${media.createdAt.getMonth() + 1}/${media.createdAt.getFullYear()}` }}
+        {{ `${media.date.getDate()}/${media.date.getMonth() + 1}/${media.date.getFullYear()}` }}
       </div>
     </div>
   </div>

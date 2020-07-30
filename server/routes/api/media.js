@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
   const media = await loadMediaCollection();
   await media.insertOne({
     name: req.body.name,
-    createdAt: new Date(),
+    date: req.body.date,
   });
   res.status(201).send();
 });
