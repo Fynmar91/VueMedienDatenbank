@@ -20,10 +20,12 @@ const actions = {
   async fetchMedia({ commit }) {
     const response = await axios.get(url);
     const data = response.data.map((media) => ({ ...media, date: new Date(media.date) }));
+
     commit("setMedia", data);
   },
-  async addMedia({ commit }, name, date) {
-    const response = await axios.post(url, { name, date });
+  async addMedia({ commit }, newMedia) {
+    const response = await axios.post(url, newMedia);
+    response.data.date = new Date(response.data.date);
 
     commit("newMedia", response.data);
   },
@@ -34,15 +36,16 @@ const actions = {
   },
   async filterMedia({ commit }, e) {
     const limit = parseInt(e.target.options[e.target.options.selectedIndex].innerText);
-    const response = await axios.get(`${url}${limit}`);
+    const response = await axios.get(`${url}limit/${limit}`);
+    const data = response.data.map((media) => ({ ...media, date: new Date(media.date) }));
 
-    commit("setMedia", response.data);
+    commit("setMedia", data);
   },
-  async updateMedia({ commit }, updatedMedia) {
-    const response = await axios.put(`${url}${updatedMedia.id}`);
+  // async updateMedia({ commit }, updatedMedia) {
+  //   const response = await axios.put(`${url}${updatedMedia.id}`);
 
-    commit("changeMedia", response.data);
-  },
+  //   commit("changeMedia", response.data);
+  //},
   setError({ commit }, error) {
     commit("writeError", error);
   },
@@ -51,7 +54,7 @@ const actions = {
 const mutations = {
   setMedia: (state, media) => (state.media = media),
   newMedia: (state, media) => state.media.unshift(media),
-  removeMedia: (state, id) => (state.media = state.media.filter((media) => media.id !== id)),
+  removeMedia: (state, id) => (state.media = state.media.filter((media) => media._id !== id)),
   changeMedia: (state, updatedMedia) => {
     const index = state.media.findIndex((media) => media.id === updatedMedia.id);
     if (index !== -1) {

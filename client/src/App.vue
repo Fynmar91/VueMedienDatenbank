@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div class="container">
-      <AddMedia />
-      <FilterMedia />
       <Media />
+      <FilterMedia />
+      <AddMedia />
     </div>
   </div>
 </template>
@@ -26,8 +26,9 @@ export default {
 <style>
 body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  line-height: 1.6;
-  background: #e8f7f0;
+  line-height: 0;
+  background: #212121;
+  color: #eceff1;
 }
 .container {
   max-width: 1100px;

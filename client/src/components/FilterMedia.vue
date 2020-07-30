@@ -1,6 +1,6 @@
 <template>
-  <div>
-    Filter Medien:
+  <div class="filter">
+    <p class="desc">Medien filtern:</p>
     <select @change="filterMedia($event)">
       <option value="200">200</option>
       <option value="100">100</option>
@@ -14,6 +14,7 @@
 
 <script>
 import { mapActions } from "vuex";
+
 export default {
   name: "FilterMedia",
   methods: mapActions(["filterMedia"]),
@@ -21,9 +22,17 @@ export default {
 </script>
 
 <style scoped>
+.filter {
+  display: flex;
+  margin-top: 40px;
+}
+.desc {
+  min-width: 160px;
+}
 select {
-  margin-top: 20px;
+  flex: 12;
+  max-width: 80px;
   padding: 6px;
-  border: #41b883 1px solid;
+  border: 1px #41b883 solid;
 }
 </style>

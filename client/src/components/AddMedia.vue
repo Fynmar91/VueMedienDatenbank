@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h3>Add Media</h3>
     <div class="add">
       <form @submit="onSubmit">
+        <p class="desc">Medien hinzufügen:</p>
         <input type="text" v-model="title" placeholder="Add Media..." />
         <input type="submit" value="Sumbit" />
       </form>
@@ -23,8 +23,11 @@ export default {
     ...mapActions(["addMedia"]),
     onSubmit(e) {
       e.preventDefault();
-      const date = new Date();
-      this.addMedia(this.title, date);
+      const newMedia = {
+        name: this.title,
+        date: new Date(),
+      };
+      this.addMedia(newMedia);
       this.title = "";
     },
   },
@@ -34,12 +37,15 @@ export default {
 <style scoped>
 form {
   display: flex;
+  margin-top: 40px;
+}
+.desc {
+  min-width: 160px;
 }
 input[type="text"] {
   flex: 10;
   padding: 10px;
-  border: 1px solid #41b883;
-  outline: 0;
+  border: 1px #41b883 solid;
 }
 input[type="submit"] {
   flex: 2;

@@ -6,23 +6,31 @@ const router = express.Router();
 // Get Media
 router.get("/", async (req, res) => {
   const media = await loadMediaCollection();
+
   res.send(await media.find({}).toArray());
+});
+
+// Get Media Limited
+router.get("/limit/:limit", async (req, res) => {
+  const media = await loadMediaCollection();
+
+  res.send(await media.find({}).limit(parseInt(req.params.limit)).toArray());
 });
 
 // Add Media
 router.post("/", async (req, res) => {
   const media = await loadMediaCollection();
-  await media.insertOne({
-    name: req.body.name,
-    date: req.body.date,
-  });
-  res.status(201).send();
+  const newMedia = req.body;
+  await media.insertOne(newMedia);
+
+  res.status(201).send(newMedia);
 });
 
 // Delete Media
 router.delete("/:id", async (req, res) => {
   const media = await loadMediaCollection();
   await media.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
+
   res.status(200).send();
 });
 
