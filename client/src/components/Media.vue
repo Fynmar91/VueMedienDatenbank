@@ -3,10 +3,10 @@
     <p class="error-p" v-if="getError">{{ getError }}</p>
     <div class="media-container">
       <div class="media" v-for="media in getAllMedia" :key="media._id" @dblclick="deleteMedia(media._id)">
-        <p class="text prop">{{ media.name }}</p>
-        <p class="text prop">{{ media.author }}</p>
-        <p class="text prop">{{ media.releaseDate }}</p>
-        <p class="text prop">{{ `${media.startDate.getDate()}/${media.startDate.getMonth() + 1}/${media.startDate.getFullYear()}` }}</p>
+        <p class="text title">{{ media.name }}</p>
+        <p class="text prop">{{ media.format }}</p>
+        <p class="text date">{{ media.releaseDate }}</p>
+        <p class="text date">{{ `${media.startDate.getFullYear()}-${("0" + (media.startDate.getMonth() + 1)).slice(-2)}-${("0" + media.startDate.getDate()).slice(-2)}` }}</p>
       </div>
     </div>
   </div>
@@ -43,9 +43,17 @@ export default {
 </script>
 
 <style scoped>
-.prop {
+.title {
   font-size: 24px;
   color: #e0e0e0;
+}
+.prop {
+  font-size: 16px;
+  color: #e0e0e0;
+}
+.date {
+  font-size: 16px;
+  color: #9e9e9e;
 }
 .error-p {
   color: #e65100;

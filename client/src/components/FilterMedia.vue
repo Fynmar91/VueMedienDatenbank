@@ -1,18 +1,23 @@
 <template>
   <div class="filter">
-    <p class="desc">Medien filtern:</p>
-    <select @change="filterMedia($event)">
-      <option value="200">200</option>
-      <option value="100">100</option>
-      <option value="50">50</option>
-      <option value="20">20</option>
-      <option value="10">10</option>
-      <option value="5">5</option>
-    </select>
-    <select class="format" @change="filterMedia($event)">
-      <option value="Alle">Alle</option>
-      <option v-for="format in getAllFormats" :key="format._id" value="format.name">{{ format.name }}</option>
-    </select>
+    <form @submit="onReset">
+      <p class="desc">Medien filtern:</p>
+      <select v-model="limit" @change="filterMedia({ limit, format, fromDate, toDate })">
+        <option value="100">100</option>
+        <option value="10">10</option>
+      </select>
+      <select class="format" v-model="format" @change="filterMedia({ limit, format, fromDate, toDate })">
+        <option value="Alle">Alle</option>
+        <option v-for="format in getAllFormats" :key="format._id" :value="format.singular">{{ format.name }}</option>
+      </select>
+      <select class="input" v-model="fromDate" @change="filterMedia({ limit, format, fromDate, toDate })">
+        <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
+      </select>
+      <select class="input" v-model="toDate" @change="filterMedia({ limit, format, fromDate, toDate })">
+        <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
+      </select>
+      <input type="submit" value="Reset" />
+    </form>
   </div>
 </template>
 
@@ -21,11 +26,32 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "FilterMedia",
+  data() {
+    return {
+      limit: "100",
+      format: "Alle",
+      fromDate: new Date().getFullYear() - (new Date().getFullYear() - 1950),
+      toDate: new Date().getFullYear(),
+    };
+  },
   methods: {
-    ...mapActions(["fetchFormats", "filterMedia", "setError"]),
+    ...mapActions(["fetchFormats", "fetchMedia", "filterMedia", "setError"]),
+    onReset(e) {
+      console.log("Test");
+      e.preventDefault();
+      this.limit = "100";
+      this.format = "Alle";
+      this.fromDate = new Date().getFullYear() - (new Date().getFullYear() - 1950);
+      this.toDate = new Date().getFullYear();
+      this.fetchMedia();
+    },
   },
   computed: {
     ...mapGetters(["getAllFormats"]),
+    years() {
+      const year = new Date().getFullYear();
+      return Array.from({ length: year - 1949 }, (value, index) => year - index);
+    },
   },
   created() {
     try {
@@ -51,5 +77,11 @@ select {
   background: #212121;
   color: #e0e0e0;
   border: 1px #e65100 solid;
+}
+input[type="submit"] {
+  background: #e65100;
+  color: #e0e0e0;
+  border: 1px #e65100 solid;
+  cursor: pointer;
 }
 </style>

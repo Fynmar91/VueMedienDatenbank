@@ -40,9 +40,8 @@ const actions = {
 
     commit("removeMedia", id);
   },
-  async filterMedia({ commit }, e) {
-    const limit = parseInt(e.target.options[e.target.options.selectedIndex].innerText);
-    const response = await axios.get(`${mediaUrl}filter/${limit}`);
+  async filterMedia({ commit }, { limit, format, fromDate, toDate }) {
+    const response = await axios.get(`${mediaUrl}filter/${limit}/${format}/${fromDate}/${toDate}`);
     const data = response.data.map((media) => ({ ...media, startDate: new Date(media.startDate) }));
 
     commit("setMedia", data);

@@ -11,10 +11,16 @@ router.get("/", async (req, res) => {
 });
 
 // Get Media Filtered
-router.get("/filter/:limit", async (req, res) => {
+router.get("/filter/:limit/:format/:fromDate/:toDate", async (req, res) => {
   const media = await loadMediaCollection();
-
-  res.send(await media.find({}).limit(parseInt(req.params.limit)).toArray());
+  let query = {};
+  if (req.params.format !== "Alle") {
+    query = { format: `${req.params.format}`, releaseDate: { $gte: parseInt(req.params.fromDate), $lte: parseInt(req.params.toDate) } };
+  } else {
+    query = { releaseDate: { $gte: parseInt(req.params.fromDate), $lte: parseInt(req.params.toDate) } };
+  }
+  console.log(query);
+  res.send(await media.find(query).limit(parseInt(req.params.limit)).toArray());
 });
 
 // Add Media
