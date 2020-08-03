@@ -8,8 +8,10 @@ app.use(express.json());
 app.use(cors());
 
 const media = require("./routes/api/media");
+const format = require("./routes/api/format");
 
 app.use("/api/media", media);
+app.use("/api/format", format);
 
 // Handle production
 console.log("NODE_ENV: " + process.env.NODE_ENV);

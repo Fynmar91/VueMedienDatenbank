@@ -9,15 +9,31 @@
       <option value="10">10</option>
       <option value="5">5</option>
     </select>
+    <select class="format" @change="filterMedia($event)">
+      <option value="Alle">Alle</option>
+      <option v-for="format in getAllFormats" :key="format._id" value="format.name">{{ format.name }}</option>
+    </select>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "FilterMedia",
-  methods: mapActions(["filterMedia"]),
+  methods: {
+    ...mapActions(["fetchFormats", "filterMedia", "setError"]),
+  },
+  computed: {
+    ...mapGetters(["getAllFormats"]),
+  },
+  created() {
+    try {
+      this.fetchFormats();
+    } catch (err) {
+      this.setError(err.message);
+    }
+  },
 };
 </script>
 
