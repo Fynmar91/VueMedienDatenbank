@@ -20,14 +20,6 @@ export default {
   name: "Media",
   methods: {
     ...mapActions(["fetchMedia", "deleteMedia", "updateMedia", "setError"]),
-    // onDblClick(todo) {
-    //   const updTodo = {
-    //     id: todo.id,
-    //     title: todo.title,
-    //     completed: !todo.completed,
-    //   };
-    //   this.updateTodo(updTodo);
-    // },
   },
   computed: {
     ...mapGetters(["getAllMedia", "getError"]),
@@ -64,9 +56,9 @@ export default {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 1rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .media {
-  /* border: 1px solid #ccc; */
   background: #212121;
   padding: 0.5rem;
   border-radius: 20px;

@@ -1,7 +1,7 @@
 <template>
   <div class="filter">
     <form @submit="onReset">
-      <p class="desc">Medien filtern:</p>
+      <p class="desc">FILTERN:</p>
       <select v-model="limit" @change="filterMedia({ limit, format, fromDate, toDate })">
         <option value="100">100</option>
         <option value="10">10</option>
@@ -66,13 +66,16 @@ export default {
 <style scoped>
 .filter {
   display: flex;
-  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #e65100;
 }
 .desc {
-  margin-right: 20px;
+  margin-bottom: 20px;
 }
 select {
   max-width: 80px;
+  margin-right: 20px;
+  margin-bottom: 20px;
   padding: 6px;
   background: #212121;
   color: #e0e0e0;

@@ -2,13 +2,13 @@
   <div>
     <div class="add">
       <form @submit="onSubmit">
-        <p class="topic">Medien hinzufügen:</p>
+        <p class="topic">HINZUFÜGEN:</p>
         <div class="flex">
           <p class="desc">Format:</p>
           <p class="desc">Name:</p>
           <p class="desc">Autor:</p>
-          <p class="desc">Erscheinungsjahr:</p>
-          <p class="desc">Angefangen am:</p>
+          <p class="desc">Erschienen:</p>
+          <p class="desc">Angefangen:</p>
           <p class="desc">Bewertung:</p>
           <p class="desc">Ist beendet?</p>
         </div>
@@ -21,7 +21,7 @@
           <select class="input" v-model="releaseDate">
             <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
           </select>
-          <div>
+          <div class="start">
             <select class="input" v-model="startYear">
               <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
             </select>
@@ -107,9 +107,10 @@ export default {
 form {
   display: grid;
   max-width: 600px;
-  grid-template-columns: 1fr 2fr 0.2fr;
-  grid-template-rows: auto 1fr 1fr 0.1fr;
-  grid-gap: 10px;
+  grid-template-columns: 1fr 2fr auto;
+  grid-template-rows: auto auto auto 0.1fr;
+  grid-gap: 5px;
+  margin: auto;
   margin-top: 1rem;
 }
 .flex {
@@ -120,6 +121,7 @@ form {
 }
 .topic {
   grid-column: 1 / span 2;
+  color: #e65100;
   grid-row: 1;
   max-width: 200px;
 }
@@ -131,6 +133,10 @@ form {
   grid-column: 2;
   grid-row: 2;
   margin-bottom: 0.5rem;
+}
+.start {
+  display: inline-block;
+  white-space: nowrap;
 }
 input[type="text"] {
   padding: 10px;
@@ -153,5 +159,12 @@ select {
   background: #212121;
   color: #e0e0e0;
   border: 1px #e65100 solid;
+}
+@media screen and (max-width: 720px) {
+  input[type="submit"] {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    height: 4rem;
+  }
 }
 </style>

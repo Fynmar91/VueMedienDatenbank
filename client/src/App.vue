@@ -1,46 +1,43 @@
 <template>
   <div id="app">
+    <Header />
     <h1>Mediendatenbank</h1>
     <hr />
-    <div class="container">
-      <FilterMedia />
-      <Media />
-      <AddMedia />
-    </div>
+    <router-view />
   </div>
 </template>
 
 <script>
-import FilterMedia from "./components/FilterMedia.vue";
-import Media from "./components/Media.vue";
-import AddMedia from "./components/AddMedia.vue";
+import Header from "./components/layout/Header";
 
 export default {
-  name: "App",
+  name: "app",
   components: {
-    FilterMedia,
-    Media,
-    AddMedia,
+    Header,
   },
 };
 </script>
 
 <style>
-body {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  line-height: 0;
-  background: #212121;
-  color: #e0e0e0;
+.btn {
+  display: inline-block;
+  border: none;
+  background: #555;
+  color: #fff;
+  padding: 7px 20px;
+  cursor: pointer;
+}
+.btn:hover {
+  background: #666;
 }
 h1 {
-  font-size: 72px;
+  font-size: 10vw;
   text-align: center;
   line-height: 0.5;
 }
-.container {
-  max-width: 1100px;
-  margin: auto;
-  overflow: auto;
-  padding: 0 2rem;
+@media screen and (min-width: 720px) {
+  h1 {
+    font-size: 72px;
+  }
 }
 </style>
