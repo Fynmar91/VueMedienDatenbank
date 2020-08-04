@@ -39,7 +39,7 @@ export default {
 
 <style scoped>
 .title {
-  font-size: 24px;
+  font-size: 30px;
   color: #e0e0e0;
 }
 .prop {
@@ -52,7 +52,7 @@ export default {
 }
 .media-container {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -64,10 +64,11 @@ export default {
   border-radius: 20px;
   text-align: center;
   position: relative;
-  box-shadow: 8px 8px 12px 1px #141414, -12px -12px 18px 1px #272727;
+  box-shadow: 10px 10px 30px #0a0a0a, -4px -4px 20px #3a3a3a;
 }
 .text {
-  line-height: 0.5;
+  overflow: hidden;
+  line-height: 1;
 }
 button {
   cursor: pointer;
@@ -83,14 +84,9 @@ button {
 img {
   border-radius: 20px;
   max-width: 90%;
-  max-height: 20rem;
+  max-height: 30rem;
 }
 @media (max-width: 1000px) {
-  .media-container {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-@media (max-width: 750px) {
   .media-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
