@@ -72,7 +72,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["addMedia"]),
+    ...mapActions(["addMedia", "fetchFormats", "setError"]),
     onSubmit(e) {
       e.preventDefault();
       const newMedia = {
@@ -111,13 +111,20 @@ export default {
       return Array.from({ length: 31 }, (value, index) => 1 + index);
     },
   },
+  created() {
+    try {
+      this.fetchFormats();
+    } catch (err) {
+      this.setError("AddMedia.vue: ", err.message);
+    }
+  },
 };
 </script>
 
 <style scoped>
 form {
   display: grid;
-  max-width: 600px;
+  max-width: 1100px;
   grid-template-columns: 1fr 2fr auto;
   grid-template-rows: auto auto auto 0.1fr;
   grid-gap: 5px;
@@ -151,7 +158,6 @@ form {
 }
 input[type="text"] {
   padding: 10px;
-  width: stretch;
   background: #212121;
   color: #e0e0e0;
   border: 1px #e65100 solid;
