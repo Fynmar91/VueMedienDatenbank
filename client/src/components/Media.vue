@@ -64,7 +64,7 @@ export default {
   border-radius: 20px;
   text-align: center;
   position: relative;
-  box-shadow: 10px 10px 30px #0a0a0a, -4px -4px 20px #363636;
+  box-shadow: 8px 8px 12px 1px #141414, -12px -12px 18px 1px #272727;
 }
 .text {
   line-height: 0.5;

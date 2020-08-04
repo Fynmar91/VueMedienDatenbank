@@ -25,13 +25,17 @@ export default {
 
 <style scoped>
 .header {
+  z-index: 1000;
+  position: sticky;
+  top: 0;
   background: #333;
   color: #fff;
   text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .header a {
+  font-size: 20px;
   color: #fff;
   padding-right: 10px;
   padding-left: 10px;
