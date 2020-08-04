@@ -10,7 +10,8 @@
           <p class="desc">Erschienen:</p>
           <p class="desc">Angefangen:</p>
           <p class="desc">Bewertung:</p>
-          <p class="desc">Ist beendet?</p>
+          <p class="desc">Beendet:</p>
+          <p class="desc">Bild:</p>
         </div>
         <div class="flex">
           <select class="input" v-model="format">
@@ -37,9 +38,16 @@
             <option value="true">Ja</option>
             <option value="false">Nein</option>
           </select>
+          <input class="input" type="text" v-model="image" placeholder="Bild..." />
         </div>
         <input type="submit" value="Submit" />
       </form>
+      <p>https://i.imgur.com/yD1Snju.jpg</p>
+      <p>https://i.imgur.com/OytCq8h.jpg</p>
+      <p>https://i.imgur.com/EZbpzu1.jpg</p>
+      <p>https://i.imgur.com/GKbiunb.jpg</p>
+      <p>https://i.imgur.com/YHPJU8H.jpg</p>
+      <p>https://i.imgur.com/nZEX3mP.jpg</p>
     </div>
   </div>
 </template>
@@ -60,6 +68,7 @@ export default {
       startDay: new Date().getDate(),
       rating: "",
       finished: "true",
+      image: "",
     };
   },
   methods: {
@@ -74,6 +83,7 @@ export default {
         startDate: new Date(this.startYear, this.startMonth - 1, this.startDay),
         rating: this.rating,
         finished: this.finished,
+        image: this.image,
       };
       this.addMedia(newMedia);
       this.format = "";
@@ -85,6 +95,7 @@ export default {
       this.startDay = new Date().getDate();
       this.rating = "";
       this.finished = "true";
+      this.image = "";
     },
   },
   computed: {

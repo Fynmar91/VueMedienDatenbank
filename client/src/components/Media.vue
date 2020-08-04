@@ -4,6 +4,7 @@
     <div class="media-container">
       <div class="media" v-for="media in getAllMedia" :key="media._id" @dblclick="deleteMedia(media._id)">
         <p class="text title">{{ media.name }}</p>
+        <img :src="media.image" />
         <p class="text prop">{{ media.format }}</p>
         <p class="text date">{{ media.releaseDate }}</p>
         <p class="text date">{{ `${media.startDate.getFullYear()}-${("0" + (media.startDate.getMonth() + 1)).slice(-2)}-${("0" + media.startDate.getDate()).slice(-2)}` }}</p>
@@ -69,6 +70,11 @@ export default {
 }
 .text {
   line-height: 0.5;
+}
+img {
+  border-radius: 20px;
+  max-width: 80%;
+  max-height: 24rem;
 }
 @media (max-width: 500px) {
   .media-container {
