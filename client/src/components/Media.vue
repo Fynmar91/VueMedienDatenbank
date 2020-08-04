@@ -1,8 +1,7 @@
 <template>
   <div>
-    <p class="error-p" v-if="getError">{{ getError }}</p>
     <div class="media-container">
-      <div class="media" v-for="media in getAllMedia" :key="media._id" @dblclick="deleteMedia(media._id)">
+      <div class="media" v-for="media in getAllMedia" :key="media._id" @dblclick="openEdit(media._id)">
         <p class="text title">{{ media.name }}</p>
         <img :src="media.image" />
         <p class="text prop">{{ media.format }}</p>
@@ -20,16 +19,19 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Media",
   methods: {
-    ...mapActions(["fetchMedia", "deleteMedia", "updateMedia", "setError"]),
+    ...mapActions(["fetchMedia", "updateMedia", "setError"]),
+    openEdit(id) {
+      this.$router.push(`/edit/${id}`);
+    },
   },
   computed: {
-    ...mapGetters(["getAllMedia", "getError"]),
+    ...mapGetters(["getAllMedia"]),
   },
   created() {
     try {
       this.fetchMedia();
     } catch (err) {
-      this.setError(err.message);
+      this.setError("Media.vue: ", err.message);
     }
   },
 };
@@ -48,33 +50,50 @@ export default {
   font-size: 16px;
   color: #9e9e9e;
 }
-.error-p {
-  color: #e65100;
-  text-align: center;
-}
 .media-container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-gap: 2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 .media {
+  height: fit-content;
   background: #212121;
   padding: 0.5rem;
   border-radius: 20px;
   text-align: center;
   position: relative;
-  cursor: pointer;
-  box-shadow: 2px 2px 0px #0a0a0a, -2px -2px 0px #424242;
+  box-shadow: 10px 10px 30px #0a0a0a, -4px -4px 20px #363636;
 }
 .text {
   line-height: 0.5;
 }
+button {
+  cursor: pointer;
+  border: none;
+  line-height: 1.5;
+  border-radius: 10px;
+  background: #ffffff00;
+  color: #e65100;
+  text-align: center;
+  float: right;
+  margin: 5px;
+}
 img {
   border-radius: 20px;
-  max-width: 80%;
-  max-height: 24rem;
+  max-width: 90%;
+  max-height: 20rem;
+}
+@media (max-width: 1000px) {
+  .media-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 750px) {
+  .media-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 @media (max-width: 500px) {
   .media-container {

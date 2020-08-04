@@ -10,6 +10,13 @@ router.get("/", async (req, res) => {
   res.send(await media.find({}).toArray());
 });
 
+// Get Single Media
+router.get("/:id", async (req, res) => {
+  const media = await loadMediaCollection();
+  const data = await media.find({ _id: new mongodb.ObjectID(req.params.id) }).toArray();
+  res.send(data);
+});
+
 // Get Media Filtered
 router.get("/filter/:limit/:format/:fromDate/:toDate", async (req, res) => {
   const media = await loadMediaCollection();
