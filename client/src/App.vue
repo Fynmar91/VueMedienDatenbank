@@ -19,6 +19,16 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  line-height: normal;
+  background: #212121;
+  color: #e0e0e0;
+}
+p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
 .btn {
   display: inline-block;
   border: none;

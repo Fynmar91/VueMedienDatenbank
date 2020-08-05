@@ -39,14 +39,17 @@ export default {
 
 <style scoped>
 .title {
+  overflow: hidden;
   font-size: 30px;
   color: #e0e0e0;
 }
 .prop {
+  overflow: hidden;
   font-size: 16px;
   color: #e0e0e0;
 }
 .date {
+  overflow: hidden;
   font-size: 16px;
   color: #9e9e9e;
 }
@@ -66,10 +69,6 @@ export default {
   position: relative;
   box-shadow: 10px 10px 30px #0a0a0a, -4px -4px 20px #3a3a3a;
 }
-.text {
-  overflow: hidden;
-  line-height: 1;
-}
 button {
   cursor: pointer;
   border: none;
@@ -83,6 +82,7 @@ button {
 }
 img {
   border-radius: 20px;
+  margin-top: 1rem;
   max-width: 90%;
   max-height: 30rem;
 }
@@ -93,7 +93,7 @@ img {
 }
 @media (max-width: 500px) {
   .media-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 </style>

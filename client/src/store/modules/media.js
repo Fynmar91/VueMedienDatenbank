@@ -81,7 +81,10 @@ const mutations = {
   setMedia: (state, media) => (state.media = media),
   setSingleMedia: (state, singleMedia) => (state.singleMedia = singleMedia),
   newMedia: (state, media) => state.media.unshift(media),
-  removeMedia: (state, id) => (state.media = state.media.filter((media) => media._id !== id)),
+  removeMedia: (state, id) => {
+    state.media = state.media.filter((media) => media._id !== id);
+    state.singleMedia = [];
+  },
   changeMedia: (state, updatedMedia) => {
     const index = state.media.findIndex((media) => media.id === updatedMedia.id);
     if (index !== -1) {

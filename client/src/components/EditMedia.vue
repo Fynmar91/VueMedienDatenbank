@@ -21,7 +21,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "EditMedia",
   methods: {
-    ...mapActions(["fetchSingleMedia", "updateMedia", "setError"]),
+    ...mapActions(["fetchSingleMedia", "updateMedia", "setError", "deleteMedia"]),
   },
   computed: {
     ...mapGetters(["getSingleMedia", "getError"]),
@@ -54,8 +54,8 @@ export default {
   text-align: center;
 }
 .media-container {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .media {
   display: grid;
@@ -64,15 +64,13 @@ export default {
   border-radius: 20px;
   text-align: left;
   position: relative;
-  box-shadow: 2px 2px 0px #0a0a0a, -2px -2px 0px #424242;
 }
 .text {
   grid-column: 2;
-  line-height: 0.5;
 }
 button {
-  grid-column: 100;
-  grid-row: 100;
+  grid-column: 3;
+  grid-row: 99;
   font-size: 24px;
   cursor: pointer;
   border: none;
@@ -83,9 +81,17 @@ button {
 }
 img {
   grid-column: 1;
-  grid-row: 1 / span 100;
+  grid-row: 1 / 100;
   border-radius: 20px;
-  max-width: 80%;
+  max-width: 100%;
   max-height: 48rem;
+}
+@media (max-width: 1000px) {
+  .text {
+    grid-column: 1;
+  }
+  button {
+    grid-row: 200;
+  }
 }
 </style>

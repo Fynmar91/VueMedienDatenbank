@@ -20,15 +20,9 @@ export default {
 };
 </script>
 
-<style>
-body {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  line-height: 0;
-  background: #212121;
-  color: #e0e0e0;
-}
+<style scoped>
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
   overflow: auto;
   padding: 0 2rem;

@@ -6,7 +6,8 @@
         <div class="flex">
           <p class="desc">Format:</p>
           <p class="desc">Name:</p>
-          <p class="desc">Autor:</p>
+          <p class="desc" v-if="hasAuthor">Autor:</p>
+          <p class="desc" v-if="hasSeason">Season:</p>
           <p class="desc">Erschienen:</p>
           <p class="desc">Angefangen:</p>
           <p class="desc">Bewertung:</p>
@@ -14,11 +15,12 @@
           <p class="desc">Bild:</p>
         </div>
         <div class="flex">
-          <select class="input" v-model="format">
+          <select class="input" v-model="format" @change="onSelect()">
             <option v-for="format in getAllFormats" :value="format.singular" :key="format.singular">{{ format.singular }}</option>
           </select>
           <input class="input" type="text" v-model="name" placeholder="Name..." />
-          <input class="input" type="text" v-model="author" placeholder="Autor..." />
+          <input class="input" v-if="hasAuthor" type="text" v-model="author" placeholder="Autor..." />
+          <input class="input" v-if="hasSeason" type="text" v-model="season" placeholder="Season..." />
           <select class="input" v-model="releaseDate">
             <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
           </select>
@@ -69,6 +71,8 @@ export default {
       rating: "",
       finished: "true",
       image: "",
+      hasSeason: false,
+      hasAuthor: false,
     };
   },
   methods: {
@@ -96,6 +100,15 @@ export default {
       this.rating = "";
       this.finished = "true";
       this.image = "";
+    },
+    onSelect() {
+      this.hasSeason = false;
+      this.hasAuthor = false;
+      if (this.format === "Serie") {
+        this.hasSeason = true;
+      } else if (this.format === "Buch") {
+        this.hasAuthor = true;
+      }
     },
   },
   computed: {

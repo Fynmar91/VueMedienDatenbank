@@ -10,7 +10,7 @@
           <th>Erschienen</th>
           <th>Bewertung</th>
         </tr>
-        <tr div class="media" v-for="media in getAllMedia" :key="media._id" @dblclick="deleteMedia(media._id)">
+        <tr div class="media" v-for="media in getAllMedia" :key="media._id" @dblclick="openEdit(media._id)">
           <td>{{ media.name }}</td>
           <td>{{ media.finished }}</td>
           <td>{{ media.format }}</td>
@@ -30,6 +30,9 @@ export default {
   name: "Media",
   methods: {
     ...mapActions(["fetchMedia", "deleteMedia", "updateMedia", "setError"]),
+    openEdit(id) {
+      this.$router.push(`/edit/${id}`);
+    },
   },
   computed: {
     ...mapGetters(["getAllMedia", "getError"]),
