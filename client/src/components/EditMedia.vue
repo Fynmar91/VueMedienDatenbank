@@ -61,17 +61,12 @@ export default {
   font-size: 20px;
   color: #9e9e9e;
 }
-.error-p {
-  color: #e65100;
-  text-align: center;
-}
 .media-container {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 .media {
   display: grid;
-  background: #212121;
   padding: 1rem;
   border-radius: 20px;
   text-align: left;
@@ -103,6 +98,7 @@ img {
     grid-column: 1;
   }
   button {
+    grid-column: 1;
     grid-row: 200;
   }
 }

@@ -22,6 +22,6 @@ export default {
   max-width: 1200px;
   margin: auto;
   overflow: auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 </style>
