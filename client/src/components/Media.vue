@@ -19,7 +19,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Media",
   methods: {
-    ...mapActions(["fetchMedia", "updateMedia", "setError"]),
+    ...mapActions(["fetchMedia", "updateMedia", "setError", "resetState"]),
     openEdit(id) {
       this.$router.push(`/edit/${id}`);
     },

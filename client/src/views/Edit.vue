@@ -2,19 +2,21 @@
   <div id="edit">
     <div class="container">
       <EditMedia />
+      <RelatedMedia />
     </div>
   </div>
 </template>
 
 <script>
 import EditMedia from "../components/EditMedia.vue";
+import RelatedMedia from "../components/RelatedMedia.vue";
 
 export default {
   name: "Edit",
   components: {
     EditMedia,
+    RelatedMedia,
   },
-  created() {},
 };
 </script>
 

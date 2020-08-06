@@ -15,7 +15,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Header",
   methods: {
-    ...mapActions(["setError"]),
+    ...mapActions(["setError", "resetState"]),
   },
   computed: {
     ...mapGetters(["getAllMedia", "getError"]),

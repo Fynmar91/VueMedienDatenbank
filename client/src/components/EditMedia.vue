@@ -2,6 +2,7 @@
   <div class="media-container">
     <div class="media" v-for="media in getSingleMedia" :key="media._id" @dblclick="openEdit(media._id)">
       <p class="text title">{{ media.name }}</p>
+      <p class="text title">{{ media.season }}</p>
       <p class="text title">{{ media.author }}</p>
       <p class="text prop">{{ media.format }}</p>
       <p class="text date">{{ media.releaseDate }}</p>
@@ -21,10 +22,21 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "EditMedia",
   methods: {
-    ...mapActions(["fetchSingleMedia", "updateMedia", "setError", "deleteMedia"]),
+    ...mapActions(["fetchSingleMedia", "setError", "deleteMedia"]),
   },
   computed: {
-    ...mapGetters(["getSingleMedia", "getError"]),
+    ...mapGetters(["getSingleMedia"]),
+  },
+  watch: {
+    $route(to, from) {
+      if (to !== from) {
+        try {
+          this.fetchSingleMedia(this.$router.history.current.params.id);
+        } catch (err) {
+          this.setError("EditMedia.vue: ", err.message);
+        }
+      }
+    },
   },
   created() {
     try {

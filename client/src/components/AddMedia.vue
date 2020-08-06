@@ -64,6 +64,7 @@ export default {
       format: "",
       name: "",
       author: "",
+      season: "",
       releaseDate: new Date().getFullYear(),
       startYear: new Date().getFullYear(),
       startMonth: new Date().getMonth() + 1,
@@ -83,6 +84,7 @@ export default {
         format: this.format,
         name: this.name,
         author: this.author,
+        season: this.season,
         releaseDate: this.releaseDate,
         startDate: new Date(this.startYear, this.startMonth - 1, this.startDay),
         rating: this.rating,
@@ -93,6 +95,7 @@ export default {
       this.format = "";
       this.name = "";
       this.author = "";
+      this.season = "";
       this.releaseDate = new Date().getFullYear();
       this.startYear = new Date().getFullYear();
       this.startMonth = new Date().getMonth() + 1;

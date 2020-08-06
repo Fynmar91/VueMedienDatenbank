@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p class="error-p" v-if="getError">{{ getError }}</p>
     <div class="media-container">
       <table id="t01">
         <tr>
@@ -35,7 +34,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getAllMedia", "getError"]),
+    ...mapGetters(["getAllMedia"]),
   },
   created() {
     try {
